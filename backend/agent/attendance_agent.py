@@ -70,3 +70,11 @@ def tool_get_client_info(
     O telefone do cliente é: {client_phone}
     A arte que o cliente quer tatuar está pronta? {client_has_art_ready}
     """
+
+def tool_persist_client_info(client_info: str):
+    """
+    Utilize esta ferramenta para persistir as informações do cliente.
+    """
+    #TODO: Implementar a persistência das informações do cliente no DB
+    
+    return f"Informações do cliente persistidas com sucesso: {client_info}"
