@@ -1,6 +1,5 @@
 from graph import create_graph
 from langchain_core.messages import HumanMessage
-import uuid
 
 graph = create_graph()
 
