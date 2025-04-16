@@ -6,12 +6,15 @@ from langgraph.prebuilt import create_react_agent
 
 def attendance_agent(state: State):
     """Agent responsible for attending to the studio's clients"""
-    llm = ChatOpenAI(model="gpt-4o", temperature=0)
+    llm = ChatOpenAI(model="gpt-4o", temperature=0.7)
     tools = [tool_get_client_info]
+    
+    #TODO: Adicionar guardrails + prevenção de prompt injection
+    #TODO: Adicionar mais informações sobre o estúdio e tatuadores
     
     prompt_template = ChatPromptTemplate.from_messages(
         [
-            ("system", """
+            ("system", """     
                 Você é um funcionário do estúdio Passione Tattoo e atende os clientes em seu primeiro contato para agendar uma tatuagem.
         
                 Para isso, você deve utilizar as seguinte ferramenta disponíveis para coletar as informações necessárias para agendar a tatuagem:
@@ -27,7 +30,8 @@ def attendance_agent(state: State):
                         Se solicitado, a ferramenta pode retornar mensagens para pedir mais informações ou fornecer as informações já obtidas.
                         
                         Caso necessário, peça mais informações para extrair um entendimento robusto e adequado. 
-                        Seja claro, direto e gentil.
+                        
+                        Seja claro, legal e gentil. Use uma linguagem informal, jovial e descontraída com o usuário.
                     
                         Responda na língua portuguesa do Brasil.
             """),
