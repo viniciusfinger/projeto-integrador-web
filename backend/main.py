@@ -3,6 +3,8 @@ from langchain_core.messages import HumanMessage
 
 graph = create_graph()
 
+#TODO: Adicionar configuração do thread_id vinda do frontend
+#TODO: criar uma API e colocar isso em um controller
 config = {
     "configurable": {
         "thread_id": "123"
