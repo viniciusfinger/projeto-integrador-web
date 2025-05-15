@@ -1,0 +1,6 @@
+langchain-openai
+langchain
+langchain-core
+langgraph==0.3.3
+typing-extensions
+langchain-community
