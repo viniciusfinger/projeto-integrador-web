@@ -12,8 +12,8 @@ config = {
 }
 
 while True:
-    user_input = input("Digite uma mensagem: ")
+    user_input = input("Usuário: ")
     
     response = graph.invoke({"messages": [HumanMessage(content=user_input)]}, config)
     
-    print(response["messages"][-1].content)
+    print(f"AI: {response['messages'][-1].content}")
