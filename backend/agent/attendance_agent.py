@@ -3,10 +3,14 @@ from typing import Optional
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langgraph.prebuilt import create_react_agent
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 def attendance_agent(state: State):
     """Agent responsible for attending to the studio's clients"""
-    llm = ChatOpenAI(model="gpt-4o", temperature=0.7)
+    llm = ChatOpenAI(model="gpt-4o", temperature=0.7, api_key=os.getenv("OPENAI_API_KEY"))
     tools = [tool_get_client_info]
 
     prompt_template = ChatPromptTemplate.from_messages(
