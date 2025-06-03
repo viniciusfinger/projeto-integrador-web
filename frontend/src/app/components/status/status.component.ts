@@ -49,10 +49,9 @@ export class StatusComponent {
   ];
 
   refreshStatus(usuario: Usuario): void {
-    // Simula uma atualização de status
+
     console.log(`Atualizando status de ${usuario.nome}`);
 
-    // Exemplo de lógica para ciclar entre os status
     const statusCycle: Record<string, { status: 'aguardando' | 'realizado' | 'finalizado', texto: string }> = {
       'aguardando': { status: 'realizado', texto: 'Contato Realizado' },
       'realizado': { status: 'finalizado', texto: 'Atendimento Finalizado' },
@@ -64,18 +63,11 @@ export class StatusComponent {
       usuario.status = nextStatus.status;
       usuario.statusTexto = nextStatus.texto;
     }
-
-    // Aqui você pode adicionar uma chamada para API
-    // this.usuarioService.updateStatus(usuario.id, usuario.status);
   }
 
   sair(): void {
-    // Lógica para sair da aplicação
-    console.log('Saindo da aplicação');
-    // Exemplo: this.router.navigate(['/login']);
   }
 
-  // Método auxiliar para obter a cor do status
   getStatusColor(status: string): string {
     const colors: Record<string, string> = {
       'aguardando': 'text-orange-500',
