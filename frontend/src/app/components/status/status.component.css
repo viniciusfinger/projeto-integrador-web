@@ -1,0 +1,81 @@
+.status-card {
+  transition: all 0.3s ease;
+}
+
+.status-card:hover {
+  transform: translateY(-2px);
+}
+
+.avatar-ring {
+  position: relative;
+}
+
+.avatar-ring::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 2px solid #ec4899;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.avatar-ring:hover::after {
+  opacity: 1;
+}
+
+.refresh-btn {
+  animation: spin 0.5s linear;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.refresh-btn:active {
+  animation: spin 0.5s linear;
+}
+
+.mascot {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@media (max-width: 768px) {
+  .status-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .status-card > div:first-child {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Animação de entrada para os cards */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gray-custom {
+  background-color: #272727;
+}
