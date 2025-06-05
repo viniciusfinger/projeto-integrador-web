@@ -1,0 +1,145 @@
+.message-enter {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.messages-container {
+  scrollbar-width: thin;
+  scrollbar-color: #e5e7eb #f3f4f6;
+}
+
+.messages-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.messages-container::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 3px;
+}
+
+.messages-container::-webkit-scrollbar-thumb {
+  background: #e5e7eb;
+  border-radius: 3px;
+}
+
+.messages-container::-webkit-scrollbar-thumb:hover {
+  background: #d1d5db;
+}
+
+.status-online {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.chat-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(236, 72, 153, 0.3);
+}
+
+.send-button:disabled {
+  transform: scale(0.95);
+}
+
+.message-status {
+  font-size: 10px;
+  opacity: 0.6;
+  margin-top: 2px;
+}
+
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+}
+
+.typing-dots {
+  display: flex;
+  gap: 4px;
+}
+
+.typing-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #9ca3af;
+  border-radius: 50%;
+  animation: typing 1.4s infinite;
+}
+
+.typing-dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing {
+
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+
+  30% {
+    transform: translateY(-10px);
+  }
+}
+
+@media (max-width: 640px) {
+  .chat-container {
+    height: 100vh;
+  }
+
+  .message-bubble {
+    max-width: 85%;
+  }
+
+  .chat-header {
+    padding: 12px 16px;
+  }
+
+  .chat-input-area {
+    padding: 12px 16px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .chat-container {
+    background-color: #111827;
+  }
+
+  .messages-area {
+    background-color: #1f2937;
+  }
+}
+
+.gray-custom {
+  background-color: #272727;
+}
