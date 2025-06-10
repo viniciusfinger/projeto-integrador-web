@@ -1,0 +1,18 @@
+.gray-custom {
+  background-color: #272727;
+}
+
+.wall {
+  background-image: url('./../../../public/images/Header-Background.png');
+}
+
+@font-face {
+  font-family: 'Ortland';
+  src: url('./../../fonts/Ortland-Regular.woff') format('woff2'),
+       url('./../../fonts/Ortland-Regular.woff') format('woff'),
+       url('./../../fonts/Ortland.otf') format('opentype');
+}
+.headline {
+  font-family: 'Ortland', sans-serif;
+  font-size: 200%;
+}

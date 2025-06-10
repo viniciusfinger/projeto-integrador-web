@@ -1,0 +1,43 @@
+<div class="min-h-screen gray-custom p-5">
+    <div class="flex justify-between items-center mb-8">
+        <h1 class="text-white text-3xl font-bold tracking-wider">STATUS DO SERVIÇO</h1>
+        <button (click)="sair()"
+            class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded-full font-medium transition-colors">
+            Sair
+        </button>
+    </div>
+    <div class="space-y-4 w-1/2">
+        <div *ngFor="let usuario of usuarios"
+            class="bg-white rounded-lg p-4 flex items-center justify-between shadow-lg hover:shadow-xl transition-shadow">
+            <div class="flex items-center space-x-4">
+                <div class="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center">
+                    <div class="w-8 h-8 bg-pink-600 rounded-full"></div>
+                </div>
+                <div>
+                    <h3 class="font-bold text-gray-800 text-lg">{{ usuario.nome }}</h3>
+                    <p class="text-gray-600 text-sm">{{ usuario.tabuador }}</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="font-medium text-sm" [ngClass]="{
+            'text-orange-500': usuario.status === 'aguardando',
+            'text-green-500': usuario.status === 'realizado',
+            'text-blue-500': usuario.status === 'finalizado'}">
+                    {{ usuario.statusTexto }}
+                </span>
+                <button class="p-2 rounded-full hover:bg-gray-100 transition-colors" (click)="refreshStatus(usuario)">
+                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="fixed bottom-8 right-8">
+        <div class="ml-4">
+            <img src="images/Logo-Cor.png" alt="Logo" class="h-20" />
+        </div>
+    </div>
+</div>
