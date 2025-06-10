@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 
 from service.auth_service import AuthService, ACCESS_TOKEN_EXPIRE_MINUTES
 from database import get_db
-from model.user import UserCreate, Token
+from model.user import UserCreate, Token, UserResponse
 
 router = APIRouter()
 
@@ -16,7 +16,7 @@ def register(user: UserCreate, db: Session = Depends(get_db)):
     if auth_service.get_user(user.email):
         raise HTTPException(status_code=400, detail="Email já registrado")
     
-    auth_service.create_user(user.name, user.email, user.password)
+    db_user = auth_service.create_user(user.name, user.email, user.password)
     
     access_token = auth_service.create_access_token(
         data={"sub": user.email},
