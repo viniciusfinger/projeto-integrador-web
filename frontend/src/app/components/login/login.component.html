@@ -1,1 +1,64 @@
-<p>login works!</p>
+<div
+  class="w-screen h-screen flex items-center justify-center bg-cover bg-center"
+  style="background-image: url('images/Header-Background.png');"
+>
+  <div class="bg-[rgba(0,0,0,0.6)]  p-10 rounded-lg shadow-lg w-[400px] text-center">
+    <div class="flex items-center justify-center gap-10 mb-5">
+      <h1 class="text-white font-orbitron text-4xl">
+        <p *ngIf="!isNewLogin">Login</p>
+        <p *ngIf="isNewLogin">Cadastro</p>
+      </h1>
+      <img src="images/Logo-Cor.png" alt="Logo" class="w-32 h-auto object-contain" />
+    </div>
+
+    <div class="space-y-3">
+      <input
+        *ngIf="isNewLogin"
+        type="text"
+        placeholder="Nome"
+        [(ngModel)]="nome"
+        class="w-full px-4 py-2 border border-pink-400 rounded text-base bg-white"
+      />
+      <input
+        type="text"
+        placeholder="E-mail"
+        [(ngModel)]="username"
+        class="w-full px-4 py-2 border border-pink-400 rounded text-base bg-white"
+      />
+      <input
+        type="password"
+        placeholder="Senha"
+        [(ngModel)]="password"
+        class="w-full px-4 py-2 border border-pink-400 rounded text-base bg-white"
+      />
+
+      <div class="text-left text-sm text-pink-400">
+        <label class="flex items-center gap-2">
+          <input
+            type="checkbox"
+            [(ngModel)]="manterConectado"
+            class="form-checkbox"
+          />
+          Mantenha-me conectado
+        </label>
+      </div>
+    </div>
+
+    <div class="flex justify-between gap-4 mt-6">
+      <button
+        type="button"
+        (click)="onLogin()"
+        class="flex-1 bg-pink-500 hover:bg-pink-700 text-white py-2 px-4 rounded transition"
+      >
+        Login
+      </button>
+      <button
+        type="button"
+        (click)="onCadastrar()"
+        class="flex-1 bg-pink-500 hover:bg-pink-700 text-white py-2 px-4 rounded transition"
+      >
+        Cadastrar-se
+      </button>
+    </div>
+  </div>
+</div>
