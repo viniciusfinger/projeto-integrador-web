@@ -7,6 +7,10 @@ from service.auth_service import AuthService, ACCESS_TOKEN_EXPIRE_MINUTES
 from database import get_db
 from model.user import UserCreate, Token, UserResponse
 
+from typing import List
+from model.servico import ServicoResponse
+from service.servico_service import ServicoService
+
 router = APIRouter()
 
 @router.post("/register", response_model=Token)
@@ -41,3 +45,8 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
         expires_delta=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     )
     return {"access_token": access_token, "token_type": "bearer"} 
+
+@router.get("/status-servicos", response_model=List[ServicoResponse])
+def listar_status_servicos(db: Session = Depends(get_db)):
+    servico_service = ServicoService(db)
+    return servico_service.listar_servicos()
