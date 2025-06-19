@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewChecked, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 interface Message {
   id: number;
@@ -12,7 +13,7 @@ interface Message {
 
 @Component({
   selector: 'app-chat',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.css'
 })
@@ -29,10 +30,7 @@ export class ChatComponent implements AfterViewChecked, OnDestroy {
 
   private shouldScrollToBottom = false;
 
-
   constructor() {
-    this.addSystemMessage('Olá! Bem-vindo ao nosso chat de atendimento.');
-    this.addSystemMessage('Como posso ajudá-lo hoje?');
   }
 
   ngAfterViewChecked() {
@@ -88,28 +86,18 @@ export class ChatComponent implements AfterViewChecked, OnDestroy {
   }
 
   getMessageClasses(isUser: boolean): string {
-    const baseClasses = 'px-4 py-2 rounded-lg max-w-xs break-words shadow-sm';
+    const baseClasses = 'px-4 py-3 rounded-lg max-w-xs md:max-w-sm lg:max-w-md break-words shadow-sm';
     return isUser
-      ? `${baseClasses} bg-gray-400 text-white`
+      ? `${baseClasses} bg-gray-400 text-white ml-auto`
       : `${baseClasses} bg-gray-500 text-white`;
   }
 
   getButtonClasses(): string {
-    const baseClasses = 'p-2 rounded-full transition-colors duration-200';
-    const enabledClasses = 'bg-pink-600 hover:bg-pink-700 text-white cursor-pointer';
+    const baseClasses = 'p-2 rounded-full transition-all duration-200';
+    const enabledClasses = 'bg-pink-600 hover:bg-pink-700 text-white cursor-pointer shadow-md';
     const disabledClasses = 'bg-pink-300 text-pink-100 cursor-not-allowed';
 
     return `${baseClasses} ${this.newMessage.trim() ? enabledClasses : disabledClasses}`;
-  }
-
-  private addSystemMessage(text: string) {
-    this.messages.push({
-      id: this.messageId++,
-      text: text,
-      isUser: true,
-      timestamp: new Date(),
-      status: 'delivered'
-    });
   }
 
   private addBotResponse(userMessage: string) {
@@ -118,7 +106,10 @@ export class ChatComponent implements AfterViewChecked, OnDestroy {
       'Entendi sua questão. Posso ajudá-lo com isso.',
       'Ótima pergunta! Deixe-me verificar as informações para você.',
       'Recebido! Estou processando sua solicitação.',
-      'Perfeito! Vou encaminhar sua demanda para o setor responsável.'
+      'Perfeito! Vou encaminhar sua demanda para o setor responsável.',
+      'Compreendo sua necessidade. Vou buscar a melhor solução.',
+      'Excelente! Sua solicitação foi registrada com sucesso.',
+      'Obrigado por entrar em contato! Estou aqui para ajudar.'
     ];
 
     const randomResponse = responses[Math.floor(Math.random() * responses.length)];
@@ -147,10 +138,14 @@ export class ChatComponent implements AfterViewChecked, OnDestroy {
 
   clearChat() {
     this.messages = [];
-    this.addSystemMessage('Chat limpo. Como posso ajudá-lo?');
+    this.messageId = 1;
   }
 
   exportChat() {
+    if (this.messages.length === 0) {
+      return;
+    }
+
     const chatText = this.messages.map(msg =>
       `[${msg.timestamp.toLocaleTimeString()}] ${msg.isUser ? 'Usuário' : 'Sistema'}: ${msg.text}`
     ).join('\n');
@@ -163,5 +158,4 @@ export class ChatComponent implements AfterViewChecked, OnDestroy {
     a.click();
     window.URL.revokeObjectURL(url);
   }
-
 }
