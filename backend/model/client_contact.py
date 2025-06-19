@@ -9,6 +9,13 @@ class ContactStatus(str, Enum):
     contacted = "contacted"
     finalized = "finalized"
 
+class ClientContactCreate(BaseModel):
+    client_name: str
+    client_number: str
+    have_art: bool
+    tattoo_artist_wanted: str
+    status: ContactStatus = ContactStatus.waiting
+
 class ClientContactResponse(BaseModel):
     id: int
     client_name: str
@@ -17,16 +24,8 @@ class ClientContactResponse(BaseModel):
     tattoo_artist_wanted: str
     status: ContactStatus
     class Config:
-        orm_mode = True
-
-
-class ClientContactCreate(BaseModel):
-    client_name: str
-    client_number: str
-    have_art: bool
-    tattoo_artist_wanted: str
-    status: ContactStatus
-
+        from_attributes = True
+        
 class ClientContact(Base):
     __tablename__ = "client_contacts"
 

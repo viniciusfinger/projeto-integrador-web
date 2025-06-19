@@ -2,9 +2,11 @@ from controller import auth_controller, client_contact_controller
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
-from model.user import Base
-from database import engine
+from model.user import Base as UserBase
+from model.client_contact import ClientContact
+from database import engine, Base
 
+# Criar todas as tabelas
 Base.metadata.create_all(bind=engine)
 
 
