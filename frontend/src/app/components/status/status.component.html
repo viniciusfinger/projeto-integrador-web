@@ -7,23 +7,23 @@
         </button>
     </div>
     <div class="space-y-4 w-1/2">
-        <div *ngFor="let usuario of usuarios"
+        <div *ngFor="let usuario of clientContacts"
             class="bg-white rounded-lg p-4 flex items-center justify-between shadow-lg hover:shadow-xl transition-shadow">
             <div class="flex items-center space-x-4">
                 <div class="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center">
                     <div class="w-8 h-8 bg-pink-600 rounded-full"></div>
                 </div>
                 <div>
-                    <h3 class="font-bold text-gray-800 text-lg">{{ usuario.nome }}</h3>
-                    <p class="text-gray-600 text-sm">{{ usuario.tabuador }}</p>
+                    <h3 class="font-bold text-gray-800 text-lg">{{ usuario.client_name }}</h3>
+                    <p class="text-gray-600 text-sm">Tatuador: {{ usuario.tattoo_artist_wanted }}</p>
+                    <p class="text-gray-500 text-xs">{{ usuario.client_number }}</p>
+                    <p class="text-gray-400 text-xs" *ngIf="usuario.have_art">✓ Arte pronta</p>
+                    <p class="text-gray-400 text-xs" *ngIf="!usuario.have_art">⚠ Arte pendente</p>
                 </div>
             </div>
             <div class="flex items-center space-x-4">
-                <span class="font-medium text-sm" [ngClass]="{
-            'text-orange-500': usuario.status === 'aguardando',
-            'text-green-500': usuario.status === 'realizado',
-            'text-blue-500': usuario.status === 'finalizado'}">
-                    {{ usuario.statusTexto }}
+                <span class="font-medium text-sm" [ngClass]="getStatusColor(usuario.status)">
+                    {{ getStatusText(usuario.status) }}
                 </span>
                 <button class="p-2 rounded-full hover:bg-gray-100 transition-colors" (click)="refreshStatus(usuario)">
                     <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">

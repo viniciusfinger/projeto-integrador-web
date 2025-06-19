@@ -5,11 +5,7 @@ from sqlalchemy.orm import Session
 
 from service.auth_service import AuthService, ACCESS_TOKEN_EXPIRE_MINUTES
 from database import get_db
-from model.user import UserCreate, Token, UserResponse
-
-from typing import List
-from model.servico import ServicoResponse
-from service.servico_service import ServicoService
+from model.user import UserCreate, Token
 
 router = APIRouter()
 
@@ -20,7 +16,7 @@ def register(user: UserCreate, db: Session = Depends(get_db)):
     if auth_service.get_user(user.email):
         raise HTTPException(status_code=400, detail="Email já registrado")
     
-    db_user = auth_service.create_user(user.name, user.email, user.password)
+    auth_service.create_user(user.name, user.email, user.password)
     
     access_token = auth_service.create_access_token(
         data={"sub": user.email},
@@ -45,8 +41,3 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
         expires_delta=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     )
     return {"access_token": access_token, "token_type": "bearer"} 
-
-@router.get("/status-servicos", response_model=List[ServicoResponse])
-def listar_status_servicos(db: Session = Depends(get_db)):
-    servico_service = ServicoService(db)
-    return servico_service.listar_servicos()
