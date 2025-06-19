@@ -20,8 +20,7 @@ export class ClientContactService {
   }
 
 
-  updateClientContactStatus(id: number, status: 'waiting' | 'contacted' | 'finalized'): Observable<ClientContact> {
-    const statusUpdate: StatusUpdate = { status };
-    return this.http.patch<ClientContact>(`${this.apiUrl}/client-contacts/${id}/status`, statusUpdate);
+  updateClientContactStatus(id: number): Observable<ClientContact> {
+    return this.http.put<ClientContact>(`${this.apiUrl}/client-contacts/${id}/status`, {});
   }
 } 

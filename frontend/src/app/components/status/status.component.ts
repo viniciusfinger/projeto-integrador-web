@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ClientContactService } from '../../services/client-contact.service';
 import { ClientContact } from '../../interfaces/client-contact.interface';
@@ -7,7 +8,7 @@ import { ClientContact } from '../../interfaces/client-contact.interface';
 @Component({
   selector: 'app-status',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HttpClientModule],
   templateUrl: './status.component.html',
   styleUrl: './status.component.css'
 })
@@ -75,26 +76,15 @@ export class StatusComponent implements OnInit {
   refreshStatus(usuario: ClientContact): void {
     console.log(`Atualizando status de ${usuario.client_name}`);
 
-    const statusCycle: Record<string, { status: 'waiting' | 'contacted' | 'finalized' }> = {
-      'waiting': { status: 'contacted' },
-      'contacted': { status: 'finalized' },
-      'finalized': { status: 'waiting' }
-    };
-
-    const nextStatus = statusCycle[usuario.status];
-    if (nextStatus) {
-      // Atualizar no backend
-      this.clientContactService.updateClientContactStatus(usuario.id, nextStatus.status).subscribe(
-        (updatedContact) => {
-          // Atualizar o objeto local
-          usuario.status = updatedContact.status;
+    this.clientContactService.updateClientContactStatus(usuario.id).subscribe(
+      (updatedContact) => {
+        usuario.status = updatedContact.status;
           console.log('Status atualizado com sucesso:', updatedContact);
         },
-        (error) => {
-          console.error('Erro ao atualizar status:', error);
-        }
-      );
-    }
+      (error) => {
+        console.error('Erro ao atualizar status:', error);
+      }
+    );
   }
 
   sair(): void {
