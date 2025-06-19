@@ -1,4 +1,4 @@
-from controller import auth_controller
+from controller import auth_controller, client_contact_controller
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
@@ -19,6 +19,7 @@ app.add_middleware(
 )
 
 app.include_router(auth_controller.router, tags=["auth"])
+app.include_router(client_contact_controller.router, tags=["client-contacts"])
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
