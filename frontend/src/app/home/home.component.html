@@ -5,10 +5,10 @@
     </div>
     <nav class="mr-4 text-white">
       <ul class="flex space-x-6">
-        <li><a routerLink="/status" class="hover:text-gray-300">AGENDAMENTO</a></li>
-        <li><a href="#" class="hover:text-gray-300">TATUADORES</a></li>
-        <li><a href="#" class="hover:text-gray-300">SOBRE</a></li>
-        <li><a href="#" class="hover:text-gray-300">WHATSAPP</a></li>
+        <li><a routerLink="/chat" class="hover:text-gray-300">AGENDAMENTO</a></li>
+        <li><a (click)="scrollToTatuadores()" class="hover:text-gray-300 cursor-pointer">TATUADORES</a></li>
+        <li><a (click)="scrollToSobre()" class="hover:text-gray-300 cursor-pointer">SOBRE</a></li>
+        <li><a class="hover:text-gray-300 cursor-pointer">WHATSAPP</a></li> <!-- TODO: add whatsapp link -->
       </ul>
     </nav>
   </div>
@@ -20,14 +20,14 @@
         <span class="headline">PASSIONE </span><span>Tattoo </span><span style="margin-left: 72%">Studio</span>
       </h1>
       <p class="text-lg mb-8">Agende sua tattoo e transforme sua ideia em arte</p>
-      <button class=" mt-8 bg-pink-500 hover:bg-pink-700 text-white font-bold py-3 px-6 rounded-full">
+      <button routerLink="/chat" class=" mt-8 bg-pink-500 hover:bg-pink-700 text-white font-bold py-3 px-6 rounded-full">
         AGENDE SUA TATTOO
       </button>
     </div>
   </div>
 </div>
 
-<div class="bg-gray-100 py-16">
+<div id="tatuadores" class="bg-gray-100 py-16">
   <div class="container mx-auto px-4">
     <h2 class="text-4xl font-bold text-gray-800 text-center mb-8">Tatuadores</h2>
     <p class="text-lg text-gray-700 text-center mb-8">
@@ -48,7 +48,7 @@
             <p class="text-sm text-purple-400">&#64;jeanzink_</p>
           </div>
 
-          <button
+          <button routerLink="/chat"
             class="bg-pink-500 hover:bg-pink-600 text-white text-xs font-bold py-2 px-3 rounded-full mt-4 transition-colors duration-200 uppercase tracking-wide">
             AGENDAR TATTOO
           </button>
@@ -66,7 +66,7 @@
             <p class="text-sm text-purple-400">&#64;marye.ink</p>
           </div>
 
-          <button
+          <button routerLink="/chat"
             class="bg-pink-500 hover:bg-pink-600 text-white text-xs font-bold py-2 px-3 rounded-full mt-4 transition-colors duration-200 uppercase tracking-wide">
             AGENDAR TATTOO
           </button>
@@ -84,7 +84,7 @@
             <p class="text-sm text-purple-400">&#64;guszink</p>
           </div>
 
-          <button
+          <button routerLink="/chat"
             class="bg-pink-500 hover:bg-pink-600 text-white text-xs font-bold py-2 px-3 rounded-full mt-4 transition-colors duration-200 uppercase tracking-wide">
             AGENDAR TATTOO
           </button>
@@ -102,7 +102,7 @@
     </div>
   </div>
 </div>
-<div class="gray-custom py-16">
+<div id="sobre" class="gray-custom py-16">
   <div class="container mx-auto px-4">
     <div class="flex flex-col md:flex-row items-center gap-8">
       <!-- Conteúdo do texto -->
@@ -145,7 +145,7 @@
     </div>
   </div>
 </div>
-<footer class="bg-gray-100 py-8">
+<footer id="whatsapp" class="bg-gray-100 py-8">
   <div class="container mx-auto px-4">
     <div class="flex flex-col md:flex-row justify-between items-center">
       <div class="mb-4 md:mb-0">
