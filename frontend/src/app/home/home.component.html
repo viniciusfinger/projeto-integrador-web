@@ -1,14 +1,14 @@
 <div class="gray-custom fixed top-0 left-0 w-full z-10">
   <div class="container mx-auto flex items-center justify-between py-4">
     <div class="ml-4">
-      <img src="images/Logo-Cor.png" alt="Logo" class="h-10" />
+      <img src="images/Logo-Cor.png" alt="Logo" class="h-15" />
     </div>
     <nav class="mr-4 text-white">
       <ul class="flex space-x-6">
-        <li><a href="#" class="hover:text-gray-300">AGENDAMENTO</a></li>
-        <li><a href="#" class="hover:text-gray-300">TATUADORES</a></li>
-        <li><a href="#" class="hover:text-gray-300">SOBRE</a></li>
-        <li><a href="#" class="hover:text-gray-300">WHATSAPP</a></li>
+        <li><a routerLink="/chat" class="hover:text-gray-300 font-bold">AGENDAMENTO</a></li>
+        <li><a (click)="scrollToTatuadores()" class="hover:text-gray-300 cursor-pointer font-bold">TATUADORES</a></li>
+        <li><a (click)="scrollToSobre()" class="hover:text-gray-300 cursor-pointer font-bold">SOBRE</a></li>
+        <li><a class="hover:text-gray-300 cursor-pointer font-bold">WHATSAPP</a></li> <!-- TODO: add whatsapp link -->
       </ul>
     </nav>
   </div>
@@ -16,93 +16,94 @@
 <div class="wall h-screen flex flex-col justify-center pt-20">
   <div class="container mx-auto px-10">
     <div class="text-white max-w-2xl">
-      <h1 class="text-5xl font-bold mb-4">
-        <span class="headline">PASSIONE </span><span>Tattoo </span><span style="margin-left: 72%">Studio</span>
+      <h1 class="text-5xl font-bold mb-4 flex items-end gap-4">
+        <span class="headline">PASSIONE</span>
+        <div class="flex flex-col mb-2">
+          <span>Tattoo</span>
+          <span>Studio</span>
+        </div>
       </h1>
-      <p class="text-lg mb-8">Agende sua tattoo e transforme sua ideia em arte</p>
-      <button class=" mt-8 bg-pink-500 hover:bg-pink-700 text-white font-bold py-3 px-6 rounded-full">
+      <h3 class="text-2xl mb-8">Agende sua tattoo e transforme sua ideia em arte</h3>
+      <button routerLink="/chat" class=" mt-8 bg-pink-500 hover:bg-pink-700 text-white font-bold py-3 px-6 rounded-full">
         AGENDE SUA TATTOO
       </button>
     </div>
   </div>
 </div>
 
-<div class="bg-gray-100 py-16">
+<div id="tatuadores" class="gray-custom py-16">
   <div class="container mx-auto px-4">
-    <h2 class="text-4xl font-bold text-gray-800 text-center mb-8">Tatuadores</h2>
-    <p class="text-lg text-gray-700 text-center mb-8">
+    <h2 class="text-4xl font-bold text-white text-center mb-8">Tatuadores</h2>
+    <p class="text-lg text-gray-300 text-center mb-8">
       Conheça os artistas que dão vida à sua arte na pele. Cada tatuador
       do nosso estúdio tem um estilo único, técnica refinada e paixão pelo
       que faz. Escolha quem combina com você e agende seu horário!
     </p>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center mb-2">
-      <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden flex max-w-md w-full">
+    <div class="grid md:grid-cols-2 gap-4 justify-items-center mb-2">
+      <div class="bg-gray-700 rounded-xl shadow-lg overflow-hidden flex max-w-md w-full h-56">
         <div class="w-1/2 relative">
           <img src="images/jean.jpeg" alt="Jean Szimanski" class="w-full h-full object-cover" />
         </div>
 
-        <div class="w-1/2 p-4 flex flex-col justify-between gray-custom">
+        <div class="w-1/2 p-4 flex flex-col justify-between bg-gray-700">
           <div class="space-y-1">
             <h3 class="text-lg font-bold text-pink-400">Jean Szimanski</h3>
             <p class="text-sm text-gray-300">Geek, Blackwork e Fullcolor</p>
             <p class="text-sm text-purple-400">&#64;jeanzink_</p>
           </div>
 
-          <button
+          <button routerLink="/chat"
             class="bg-pink-500 hover:bg-pink-600 text-white text-xs font-bold py-2 px-3 rounded-full mt-4 transition-colors duration-200 uppercase tracking-wide">
             AGENDAR TATTOO
           </button>
         </div>
       </div>
-      <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden flex max-w-md w-full">
+      <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden flex max-w-md w-full h-56">
         <div class="w-1/2 relative">
           <img src="images/maria.jpeg" alt="Maria Quelipe" class="w-full h-full object-cover" />
         </div>
 
-        <div class="w-1/2 p-4 flex flex-col justify-between gray-custom">
+        <div class="w-1/2 p-4 flex flex-col justify-between bg-gray-700">
           <div class="space-y-1">
             <h3 class="text-lg font-bold text-pink-400">Maria Quelipe</h3>
             <p class="text-sm text-gray-300">Geek, Whipshading e Delicadas</p>
             <p class="text-sm text-purple-400">&#64;marye.ink</p>
           </div>
 
-          <button
+          <button routerLink="/chat"
             class="bg-pink-500 hover:bg-pink-600 text-white text-xs font-bold py-2 px-3 rounded-full mt-4 transition-colors duration-200 uppercase tracking-wide">
             AGENDAR TATTOO
           </button>
         </div>
       </div>
-      <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden flex max-w-md w-full">
+      <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden flex max-w-md w-full h-56">
         <div class="w-1/2 relative">
           <img src="images/gustavo.jpeg" alt="Maria Quelipe" class="w-full h-full object-cover" />
         </div>
 
-        <div class="w-1/2 p-4 flex flex-col justify-between gray-custom">
+        <div class="w-1/2 p-4 flex flex-col justify-between bg-gray-700">
           <div class="space-y-1">
             <h3 class="text-lg font-bold text-pink-400">Gustavo Campos</h3>
             <p class="text-sm text-gray-300">Geek, Whipshading e Dark</p>
             <p class="text-sm text-purple-400">&#64;guszink</p>
           </div>
 
-          <button
+          <button routerLink="/chat"
             class="bg-pink-500 hover:bg-pink-600 text-white text-xs font-bold py-2 px-3 rounded-full mt-4 transition-colors duration-200 uppercase tracking-wide">
             AGENDAR TATTOO
           </button>
         </div>
       </div>
-      <div class="gray-custom rounded-lg shadow-md p-6 text-white relative">
+      <div class="bg-gray-700 rounded-xl shadow-lg p-6 text-white relative max-w-md w-full h-56 flex flex-col justify-center items-center text-center">
         <div>
-          <p class="text-lg italic mb-12">Cada tatuador aqui tem uma história pra contar através da arte. Escolha bem e
+          <p class="text-lg italic">Cada tatuador aqui tem uma história pra contar através da arte. Escolha bem e
             venha viver essa experiência com a gente.</p>
-        </div>
-        <div class="absolute bottom-4 right-4">
-          <img src="images/logo-nome.png" alt="Passione Tattoo Studio" class="h-10" />
-        </div>
+        </div>  
       </div>
     </div>
   </div>
 </div>
-<div class="gray-custom py-16">
+<div id="sobre" class="bg-black py-16">
   <div class="container mx-auto px-4">
     <div class="flex flex-col md:flex-row items-center gap-8">
       <!-- Conteúdo do texto -->
@@ -134,7 +135,7 @@
       </div>
       <div class="md:w-1/2 relative">
         <div class="rounded-2xl overflow-hidden shadow-2xl">
-          <img src="images/jojo.jpeg" alt="Tatuagem em braço" class="w-full h-80 object-cover" />
+          <img src="images/jojo.jpeg" alt="Tatuagem em braço" class="w-full h-full object-cover" />
         </div>
         <div class="absolute -bottom-4 -right-4 flex gap-2">
           <div class="w-3 h-3 bg-pink-400 rounded-full"></div>
@@ -145,7 +146,7 @@
     </div>
   </div>
 </div>
-<footer class="bg-gray-100 py-8">
+<footer id="whatsapp" class="bg-gray-100 py-8">
   <div class="container mx-auto px-4">
     <div class="flex flex-col md:flex-row justify-between items-center">
       <div class="mb-4 md:mb-0">
